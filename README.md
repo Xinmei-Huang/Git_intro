@@ -54,7 +54,7 @@ STEP 2: In Git
 
 ***ssh-add public_key*** : input password
 
-"*Identity added: public_key (riccyhxmlll@gmail.com)*"
+"*Identity added: public_key (ricc....lll@gmail.com)*"
 
 
 -------------------------------------------------------------------------------------------
