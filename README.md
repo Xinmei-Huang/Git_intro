@@ -3,11 +3,11 @@ Basic command for git/github
 
 reference: https://www.youtube.com/watch?v=RGOj5yH7evk 
 
-
+------------------------------------------------------------------------------
 ## 1. SSH setup 
 For pulling a private repo from Github to Git or pushing from git to Github, an SSH key needs to be set up first.
 
-### - Create SSH key
+### 1.1 Create SSH key
 ***ssh-keygen -t rsa -b 4096 -C "ricc....lll@gmail.com"*** : imput the email of Github
 
 "*Generating public/private rsa key pair.*"
@@ -18,7 +18,9 @@ For pulling a private repo from Github to Git or pushing from git to Github, an 
 
 "*Enter same passphrase again:*"
 
-### - Check SSH key
+### 1.2 Check SSH key
+
+(a) On Git：
 
 ***ls | grep public_key***
 
@@ -30,10 +32,36 @@ For pulling a private repo from Github to Git or pushing from git to Github, an 
 
 ***cat public_key.pub*** : print the SSH key
 
+(b) On Github: 
+
+Go to "SSH and GPG keys" -- "New SSH key" -- paste the public_key.pub and press "Add SSH key"
+
+(c) Add SSH key to the ssh-agent
+
+STEP 1: Make sure SSH-agent can be opened
+
+In Windows PowerShell (run as admin!!!!!):
+
+***Get-Service | ?{$_.Name -like '*ssh-agent*'} | select -Property Name, StartType, Status *** : Check the current status of ssh-agent
+
+***Set-Service -Name ssh-agent -StartupType Manual*** : Enable the Service if it is disabled
+
+***Start-Service ssh-agent*** : Start the Service
+
+(Implement step in Git: Add your key as before: ssh-add <path to the key>)
+
+STEP 2: In Git
+
+***ssh-add public_key*** : input password
+
+"*Identity added: public_key (riccyhxmlll@gmail.com)*"
+
+
+-------------------------------------------------------------------------------------------
 
 ## 2. Pull and Push
 
-### - Git command intro
+### 2.1 Git command intro
 - clone: bring a repo that is hosted somewhere else like Github into a folder on your local machine
 - add: track your files and changes in Git
 - commit: save your files in Git
@@ -41,15 +69,17 @@ For pulling a private repo from Github to Git or pushing from git to Github, an 
 - pull: download changes from remote repo to your local machine
 
 
-### - Basic command
+### 2.2 Basic command
 ***git commit -am "add new line"*** : -am for "add" + "message"
 
 ***git status*** : check the status for recent file
 
 
+-------------------------------------------------------
+
 ## 3. Branch
 
-### - Basic command
+### 3.1 Basic command
 
 ***git checkout master*** : change to "master" branch, "master" can be changed to any other "branch". 
 
@@ -58,8 +88,12 @@ For pulling a private repo from Github to Git or pushing from git to Github, an 
 ***git merge master*** : merge changes (recent branch) to "master" branch.
 
 
-### - Fix merge conflicts
+### 3.2 Fix merge conflicts
 Adjust direcly in the code script. 
+
+
+
+-------------------------------------------------------
 
 ## 4. Reset
 
@@ -82,6 +116,9 @@ Or
 
 ***git reset --hard 37sjfaweh...*** : changes after this commit will be completely deleted
 
+
+
+-------------------------------------------------------
 
 ## 5. Fork
 Copy other people's Repo
