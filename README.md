@@ -70,6 +70,9 @@ STEP 2: In Git
 
 
 ### 2.2 Basic command
+  
+***git clone ...(SSH)*** ： For a private repo, need access token--“https://username:access_token@github.com/username/repo_name.git”
+  
 ***git commit -am "add new line"*** : -am for "add" + "message"
 
 ***git status*** : check the status for recent file
