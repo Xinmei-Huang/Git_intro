@@ -12,7 +12,7 @@ For pulling a private repo from Github to Git or pushing from git to Github, an 
 
 "*Generating public/private rsa key pair.*"
 
-"*Enter file in which to save the key (C:\Users\Riccy Huang/.ssh/id_rsa): public_key*" : a name for the SSH key
+"*Enter file in which to save the key (C:\Users\Riccy Huang/.ssh/id_rsa): public_key*" : a name for the SSH key to replace "id_rsa"--!!!! when changing the name, the key will be saved in the working directory rather than "C:\Users\Riccy Huang/.ssh"
 
 "*Enter passphrase (empty for no passphrase):*" : r***y
 
@@ -26,15 +26,15 @@ For pulling a private repo from Github to Git or pushing from git to Github, an 
 
 "*grep public_key*"
 
-"*-a----         1/21/2023  10:59 AM           3434 public_key*": private key (no sharing!)
+"*-a----         1/21/2023  10:59 AM           3434 key1*": private key (no sharing!)
 
-"*-a----         1/21/2023  10:59 AM            748 public_key.pub*" : public key
+"*-a----         1/21/2023  10:59 AM            748 key1.pub*" : public key
 
-***cat public_key.pub*** : print the SSH key
+***cat key1.pub*** : print the SSH key
 
 (b) On Github: 
 
-Go to "SSH and GPG keys" -- "New SSH key" -- paste the public_key.pub and press "Add SSH key"
+Go to "SSH and GPG keys" -- "New SSH key" -- paste the key1.pub and press "Add SSH key"
 
 (c) Add SSH key to the ssh-agent
 
@@ -52,9 +52,9 @@ In Windows PowerShell (run as admin!!!!!):
 
 STEP 2: In Git
 
-***ssh-add public_key*** : input password
+***ssh-add key1*** : input password
 
-"*Identity added: public_key (ricc....lll@gmail.com)*"
+"*Identity added: key1 (ricc....lll@gmail.com)*"
 
 
 -------------------------------------------------------------------------------------------
