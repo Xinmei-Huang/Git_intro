@@ -4,12 +4,31 @@ Basic command for git/github
 reference: https://www.youtube.com/watch?v=RGOj5yH7evk 
 
 
-## 1. Connect Github to local Git
+## 1. SSH setup 
+For pulling a private repo from Github to Git or pushing from git to Github, an SSH key needs to be set up first.
 
+### - Create SSH key
+***ssh-keygen -t rsa -b 4096 -C "ricc....lll@gmail.com"*** : imput the email of Github
 
+"*Generating public/private rsa key pair.*"
 
+"*Enter file in which to save the key (C:\Users\Riccy Huang/.ssh/id_rsa): public_key*" : a name for the SSH key
 
-***git status*** : check the status for recent file
+"*Enter passphrase (empty for no passphrase):*" : r***y
+
+"*Enter same passphrase again:*"
+
+### - Check SSH key
+
+***ls | grep public_key***
+
+"*grep public_key*"
+
+"*-a----         1/21/2023  10:59 AM           3434 public_key*": private key (no sharing!)
+
+"*-a----         1/21/2023  10:59 AM            748 public_key.pub*" : public key
+
+***cat public_key.pub*** : print the SSH key
 
 
 ## 2. Pull and Push
@@ -25,6 +44,7 @@ reference: https://www.youtube.com/watch?v=RGOj5yH7evk
 ### - Basic command
 ***git commit -am "add new line"*** : -am for "add" + "message"
 
+***git status*** : check the status for recent file
 
 
 ## 3. Branch
