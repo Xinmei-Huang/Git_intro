@@ -14,6 +14,8 @@ For pulling a private repo from Github to Git or pushing from git to Github, an 
 
 "*Enter file in which to save the key (C:\Users\Riccy Huang/.ssh/id_rsa): public_key*" : a name for the SSH key to replace "id_rsa"--!!!! when changing the name, the key will be saved in the working directory rather than "C:\Users\Riccy Huang/.ssh"
 
+Here, changing the name is not recommended. Keep the input empty.
+
 "*Enter passphrase (empty for no passphrase):*" : r***y
 
 "*Enter same passphrase again:*"
@@ -22,15 +24,22 @@ For pulling a private repo from Github to Git or pushing from git to Github, an 
 
 (a) On Git：
 
-***ls | grep public_key***
+***ls | grep id_rsa***
 
-"*grep public_key*"
+"*grep id_rsa*"
 
-"*-a----         1/21/2023  10:59 AM           3434 key1*": private key (no sharing!)
+"*-a----         1/21/2023  10:59 AM           3434 id_rsa*": private key (no sharing!)
 
-"*-a----         1/21/2023  10:59 AM            748 key1.pub*" : public key
+"*-a----         1/21/2023  10:59 AM            748 id_rsa.pub*" : public key
 
-***cat key1.pub*** : print the SSH key
+***cat id_rsa.pub*** : print the SSH key
+
+Or On Git BasH:
+
+***ls -al ~/.ssh***
+
+***cat ~/.ssh/id_rsa.pub***
+
 
 (b) On Github: 
 
@@ -50,11 +59,26 @@ In Windows PowerShell (run as admin!!!!!):
 
 (Implement step in Git: Add your key as before: ssh-add <path to the key>)
 
-STEP 2: In Git
+STEP 2: In Git/Git Bash
 
-***ssh-add key1*** : input password
+(In Git: ***ssh-add ~/.ssh/id_rsa*** : input password: !!! Giving error due to space in the path)
 
-"*Identity added: key1 (ricc....lll@gmail.com)*"
+In Git Bash:
+
+***$ ls ~/.ssh***
+
+"*id_rsa  id_rsa.pub  known_hosts*"
+
+***$ eval "$(ssh-agent -s)"
+
+"*Agent pid 1031*"
+
+***$ ssh-add ~/.ssh/id_rsa***
+
+"*Enter passphrase for /c/Users/Riccy Huang/.ssh/id_rsa:*"
+
+"*Identity added: /c/Users/Riccy Huang/.ssh/id_rsa (riccyhxmlll@gmail.com)*"
+
 
 
 -------------------------------------------------------------------------------------------
