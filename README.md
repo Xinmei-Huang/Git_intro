@@ -116,7 +116,6 @@ Then go to Github and create a new folder with the same name "demo2".
 ***git remote -v***
 ***git push origin push*** : Or ***git push -u origin push***, "-u" means upstream, next time the location is set to be "origin" directly without typing it. 
 
-***git checkout master*** : change to "master" branch, "master" can be changed to any other "branch".
 
 -------------------------------------------------------
 
@@ -124,23 +123,45 @@ Then go to Github and create a new folder with the same name "demo2".
 
 ### 3.1 Basic command
 
-***git branch***
-“*(*)master*"
+***git branch***   
+“*.master*" : with a star sign ahead of the current branch, press q to quit
+  
+***git checkout -b new-branch*** : -b creating a new branch, and go to this new branch
+  
+***git checkout master*** : change to "master" branch, "master" can be changed to any other "branch".
+  
+Add a new README.md file in the new-branch, and save it   
+***git add README.me***   
+***git commit -m "updated readme"***
 
+***git checkout master*** : no changes at all, only changes in new-branch
+  
 ***git diff master*** : compare the difference between the recent branch with "master" branch.
 
-***git merge master*** : merge changes (recent branch) to "master" branch.
+!!(a) Merge on Github
+  
+***git push origin new-branch***   
+Can directly compare and merge branch on the Github interface. "Create a pull request" (pr), and comments for a specific line of code can also be added by pressing the blue button; and then "Merge pull request".
 
+***git checkout master***   
+***git pull***
+
+After merging, delete the new-branch on Git   
+***git branch -d new-branch*** 
+
+Or
+
+!!(b) Merge on Git locally
+  
+***git merge master*** : merge changes from master to recent branch -- regularly keep up with changes from the master branch on Github.
 
 ### 3.2 Fix merge conflicts
-Adjust direcly in the code script. 
-
+Adjust direcly in the code script in Git (conflicts are noted in the script). 
 
 
 -------------------------------------------------------
 
 ## 4. Reset
-
 
 ***git add README.me***   
 ***git reset*** / ***git reset README.md*** : the add file "README.md" no longer staged
@@ -161,7 +182,8 @@ Or
 -------------------------------------------------------
 
 ## 5. Fork
-Copy other people's Repo
+  
+Copy other people's Repo to our personal Github Repo
 
 create pull request: comparing personal changes with the orginal version & Merge
 
