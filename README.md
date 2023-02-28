@@ -189,4 +189,10 @@ create pull request: comparing personal changes with the orginal version & Merge
 
 
 
+-------------------------------------------------------
+## 6. Syntax
+1. Mermaid flowchart: https://mermaid.js.org/syntax/flowchart.html 
+
+
+
 
