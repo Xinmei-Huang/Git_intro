@@ -188,9 +188,76 @@ Copy other people's Repo to our personal Github Repo
 create pull request: comparing personal changes with the orginal version & Merge
 
 
+-------------------------------------------------------
+## 6. Merge two repo
+(reference: https://medium.com/@ayushya/move-directory-from-one-repository-to-another-preserving-git-history-d210fa049d4b) \
+eg, merge repoA to repoB, In Git:     
+
+1) Getting files ready to move from Repository A \
+Step 1: \
+***mkdir cloneA*** \
+***cd cloneA*** \
+***git clone --branch <branch> --origin origin --progress \ -v <git repository A url>*** \
+eg, git clone --branch master --origin origin --progress \
+    -v https://github.com/username/myproject.git      
+    
+Step 2: Go to that directory: \
+***cd <git repository A directory>*** \
+# eg. cd myproject \
+# Folder Path is ~/cloneA/myproject \  
+
+Step 3: To avoid accidentally making any remote changes (eg. by pushing), delete the link to the original repository. \
+***git remote rm origin*** \
+
+Step 4: Go through your history and files, removing anything that is not in FOLDER_TO_KEEP. The result is the contents of FOLDER_TO_KEEP spewed out into the base of repository A. \
+***git filter-branch --subdirectory-filter <directory> -- --all*** \
+# eg. git filter-branch --subdirectory-filter subfolder1/subfolder2/FOLDER_TO_KEEP -- --all \
+
+Step 5: Clean the unwanted data. \
+***git reset --hard*** \
+***git gc --aggressive*** \ 
+***git prune*** \
+***git clean -fd*** \
+
+Step 6: Move all the files and directories to a NEW_FOLDER which you want to push to repository B.\
+***mkdir <base directory>*** \
+#eg mkdir NEW_FOLDER \
+***mv * <base directory>*** \
+#eg mv * NEW_FOLDER \
+
+Step 7: Add the changes and commit them. \
+***git add .*** \
+***git commit -m "Collected the data I need to move"*** \
+
+2)Merge the files into the new repository B. \
+Step 1: \
+***mkdir cloneB*** \
+***cd cloneB*** \
+***git clone <git repository B url>*** \
+
+Step 2: Go to that directory. \
+***cd <git repository B directory>*** \
+#  eg. cd newproject \
+# Folder Path is ~/cloneB/newproject \
+
+Step 3: Create a remote connection to repository A as a branch in repository B. \
+***git remote add repo-A <git repository A directory>*** \
+# (repo-A can be anything - it's just a random name) \
+# eg. git remote add repo-A ~/cloneA/myproject \
+
+Step 4: Pull files and history from this branch (containing only the directory you want to move) into repository B. \
+***git pull repo-A master --allow-unrelated-histories*** \
+# This merges master from repository A into repository B \
+
+Step 5: Remove the remote connection to repository A. \
+***git remote rm repo-A*** \
+
+Step 6: Finally, push the changes \
+***git push*** \
+
 
 -------------------------------------------------------
-## 6. Syntax
+## 7. Syntax
 1. Mermaid flowchart: https://mermaid.js.org/syntax/flowchart.html 
 
 
